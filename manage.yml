@@ -3,7 +3,8 @@
 # Detect if the client has python-apt. If not, install all listed dependencies.  
 - name: Install Ansible Dependencies
   hosts: ubuntu
-  remote_user: root
+  become: true
+  remote_user: ubuntu
   gather_facts: no
   pre_tasks:
     - raw: if [ 1 -gt $(grep -c 'install ok installed' <<< `dpkg -s python-apt`) ]; then apt-get update; apt-get -y install python-simplejson python-apt; fi;
@@ -12,7 +13,8 @@
 
 - name: apply common configuration to all nodes
   hosts: ubuntu
-  remote_user: root
+  become: true
+  remote_user: ubuntu
 
   roles:
     - common
@@ -21,7 +23,8 @@
 
 - name: deploy Stoutsopenvpn OpenVPN role
   hosts: Stoutsopenvpn
-  remote_user: root
+  become: true
+  remote_user: ubuntu
 
   roles:
     - iptables-openvpn
@@ -30,7 +33,8 @@
 
 - name: check restart status and restart if required
   hosts: ubuntu
-  remote_user: root
+  become: true
+  remote_user: ubuntu
 
   roles:
     - rebooter
