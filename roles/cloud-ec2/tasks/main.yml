@@ -44,8 +44,8 @@
         region: "{{ region }}"
         filters:
           instance-state-name: running
-          "tag:Environment": Algo
-      register: algo_instances
+          "tag:Environment": OpenVPN
+      register: openvpn_instances
 
     - name: Ensure the group ec2 exists in the dynamic inventory file
       lineinfile:
@@ -61,7 +61,7 @@
         regexp: "^{{ item.public_ip_address }}.*"
         line: "{{ item.public_ip_address }}"
       with_items:
-        - "{{ algo_instances.instances }}"
+        - "{{ openvpn_instances.instances }}"
   rescue:
     - debug: var=fail_hint
       tags: always
