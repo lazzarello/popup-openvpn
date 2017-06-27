@@ -4,3 +4,5 @@
 
 ovpn_files/*
 env/*
+hosts
+group_vars/all
