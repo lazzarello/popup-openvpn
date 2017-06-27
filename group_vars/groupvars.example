@@ -5,10 +5,19 @@
 # any user can connect with any certificate
 # rule of thumb: one machine per user and client/certificate
 # lazy way: one certificate for all your machines
-openvpn_use_pam: yes
+# openvpn_use_pam: yes
+#openvpn_use_pam_users:
+#- { name: defaultuser1, password: asecurepassword1 }
+#- { name: defaultuser2, password: asecurepassword2 }
+#- { name: defaultuser3, password: asecurepassword3 }
+#- { name: defaultuser4, password: asecurepassword4 }
+
+# if you want to use client certificate/key authentication only,
+# uncomment this line
+# openvpn_use_pam: no
 
 # Use 2017 cipher lengths
-# openvpn_port: 443
+openvpn_port: 443
 openvpn_key_size: 2048
 openvpn_cipher: AES-256-CBC
 
@@ -16,12 +25,6 @@ openvpn_cipher: AES-256-CBC
 # depending on your use case you can use this per device or per person
 # per device is preferred
 openvpn_clients: [myvpn1, myvpn2, myvpn3, myvpn4]
-
-openvpn_use_pam_users:
-- { name: defaultuser1, password: asecurepassword1 }
-- { name: defaultuser2, password: asecurepassword2 }
-- { name: defaultuser3, password: asecurepassword3 }
-- { name: defaultuser4, password: asecurepassword4 }
 
 openvpn_server_options:
  - push "dhcp-option DNS 8.8.8.8"
