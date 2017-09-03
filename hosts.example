@@ -3,6 +3,8 @@
 [vpnservers]
 1.2.3.4
 
+[vpnservers:vars]
+openvpn_host=0.0.0.0
 
 # groups defined below in terms of aliases
 [ubuntu:children]
